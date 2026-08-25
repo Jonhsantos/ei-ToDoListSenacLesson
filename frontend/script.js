@@ -34,9 +34,18 @@ function addTask() {
 btnAdd.addEventListener('click', addTask)
 
 function renderTasks() {
-  tasksContainer.innerHTML = ''
+    let filteredTasks = tasks
 
-  tasks.forEach(task => {
+    if (currentFilter === 'ativas') {
+    filteredTasks = tasks.filter(task => !task.completed)
+    }
+
+    if (currentFilter === 'completas') {
+    filteredTasks = tasks.filter(task => task.completed)
+    }
+    tasksContainer.innerHTML = ''
+
+    filteredTasks.forEach(task => {
     const div = document.createElement('div')
 
     div.classList.add('task')
@@ -63,3 +72,18 @@ function renderTasks() {
     tasksContainer.appendChild(div)
   })
 }
+filters.forEach(filterBtn => {
+  filterBtn.addEventListener('click', () => {
+    filters.forEach(btn => btn.classList.remove('active'))
+
+    filterBtn.classList.add('active')
+
+    const text = filterBtn.textContent.toLowerCase()
+
+    if (text.includes('todas')) currentFilter = 'todas'
+    if (text.includes('ativas')) currentFilter = 'ativas'
+    if (text.includes('completas')) currentFilter = 'completas'
+
+    renderTasks()
+  })
+})
