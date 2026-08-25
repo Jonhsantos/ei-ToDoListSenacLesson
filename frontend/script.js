@@ -28,6 +28,7 @@ function addTask() {
   input.value = ''
 
   console.log(tasks)
+  renderTasks()
 }
 
 btnAdd.addEventListener('click', addTask)
@@ -48,6 +49,12 @@ function renderTasks() {
       <input type="checkbox" ${task.completed ? 'checked' : ''}>
       <span>${task.text}</span>
     `
+    const checkbox = div.querySelector('input')
+    checkbox.addEventListener('change', () => {
+      task.completed = checkbox.checked
+      renderTasks()
+    })
+    
 
     tasksContainer.appendChild(div)
   })
