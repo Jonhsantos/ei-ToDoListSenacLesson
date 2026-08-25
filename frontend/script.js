@@ -29,3 +29,26 @@ function addTask() {
 
   console.log(tasks)
 }
+
+btnAdd.addEventListener('click', addTask)
+
+function renderTasks() {
+  tasksContainer.innerHTML = ''
+
+  tasks.forEach(task => {
+    const div = document.createElement('div')
+
+    div.classList.add('task')
+
+    if (task.completed) {
+      div.classList.add('completed')
+    }
+
+    div.innerHTML = `
+      <input type="checkbox" ${task.completed ? 'checked' : ''}>
+      <span>${task.text}</span>
+    `
+
+    tasksContainer.appendChild(div)
+  })
+}
