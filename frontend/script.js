@@ -10,3 +10,22 @@ let tasks = [];
 // filtro padrão
 let currentFilter = 'todas';
 
+function addTask() {
+  const text = input.value.trim()
+
+  if (text === '') {
+    return
+  }
+
+  const task = {
+    id: Date.now(),
+    text: text,
+    completed: false
+  }
+
+  tasks.push(task)
+
+  input.value = ''
+
+  console.log(tasks)
+}
