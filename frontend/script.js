@@ -55,6 +55,10 @@ function renderTasks() {
       renderTasks()
     })
     
+    div.addEventListener('dblclick', () => {
+      tasks = tasks.filter(t => t.id !== task.id)
+      renderTasks()
+    })
 
     tasksContainer.appendChild(div)
   })
